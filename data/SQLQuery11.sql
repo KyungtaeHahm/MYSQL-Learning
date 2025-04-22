@@ -1,32 +1,51 @@
 
 
 /*
-[ 복습 ]
+[ 수치와 문자열 ]
 
-SELECT *
-FROM players;
+-- 2021 - 1934 프로그래밍 해서 했던 사칙연산
+-- +,-,/,*,% 연산 지원함
 
-실행이 안 될 때 맨 상단에 USE BaseballData; 를 기입
 
-금일 학습 할 것은 Order by ( 정렬 )
+SELECT 2021 - birthYear AS koreanAge
+FROM players 
+WHERE deathYear IS NULL AND birthYear IS NOT NULL AND koreanAge <= 80
+ORDER BY koreanAge
 
-WHERE birthYear IS NOT NULL		-- ORDER BY를 실행시 정렬 최상단에 NULL 값이 우선순위
-ORDER BY birthYear DESC, birthMonth DESC, birthDay DESC;		-- ASC : 작은 -> 큰 / DESC : ASC의 역순 / 미기입시 자동으로 ASC
-다항으로 가능
+WHERE 구문에서 에러가 남.
+ㄴ> 로직순서 문제로
 
-SELECT TOP (10) * -- TOP 10명만 보고 싶을 때
-SELECT TOP 1 PERCENT *	-- 전체의 1%만 보여주세요
-문제 MYSQL가면 명령어가 다름 / 치명적인 문제. TOP 100을 출력하고 싶을 때 100~200 중간을 원할 때 방법이 없음. TOP이기 때문에....
+-- FROM		책상에서
+-- WHERE	빨간색 공을
+-- SELECT	갖고 오고
+-- ORDERBY	크기 순서로 정렬해라
 
-해결방법 : OFFSET 100 ROWS FETCH NEXT 100 ROWS ONLY;	-- 100 개의 행을 건너뛰고 그 다음 100개만 추출해줘
+SELECT에서 선언을 했으니 WHERE에 값이 없음
+
+그래서 WHERE 구문에서 koreanAge가 아닌 birthYear로 써야함
+
+SELECT 2021 - NULL , NULL은 존재하지 않는 값이므로 해당 연산의 값은 NULL로 나옴. 그러니 주의
+
+SELECT 3 / 2;	-- 결과가 1이 나옴. 정수를 정수로 나눠서 .5가 잘림.
+SELECT 3.0 / 2;	-- 결과는 1.5가 나옴. 하나만 소수일경우 소수로나옴.
+
+
+- 그 외 다양한 함수가 있음. SIN - SQL에서 확인 가능함
+
+SELECT ROUND(3.1414141414,3); -- 뒤에서 3번째까지 자름
+
+SELECT POWER(2, 3)		-- 2^3
+
+SELECT COS(0)
+
 */
 USE BaseballData;
 
--- 100~200
 
-SELECT *	-- 전체의 1%만 보여주세요
 
-FROM players
-WHERE birthYear IS NOT NULL		-- ORDER BY를 실행시 정렬 최상단에 NULL 값이 우선순위
-ORDER BY birthYear DESC, birthMonth DESC, birthDay DESC	-- ASC : 작은 -> 큰 / DESC : ASC의 역순 / 미기입시 자동으로 ASC
-OFFSET 100 ROWS FETCH NEXT 100 ROWS ONLY;	-- 100 개의 행을 건너뛰고 그 다음 100개만 추출해줘
+
+
+SELECT 2021 - birthYear AS koreanAge
+FROM players 
+WHERE deathYear IS NULL AND birthYear IS NOT NULL AND (2021 - birthYear) <= 80
+ORDER BY koreanAge
