@@ -39,3 +39,22 @@ SELECT TOP (1)*
 FROM batting
 WHERE teamID = 'BOS'
 ORDER BY HR DESC
+
+SELECT *
+FROM players
+WHERE playerID = 'ortizda01'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
