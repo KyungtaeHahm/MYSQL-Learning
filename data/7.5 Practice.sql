@@ -44,17 +44,3 @@ SELECT *
 FROM players
 WHERE playerID = 'ortizda01'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
